@@ -1,0 +1,61 @@
+<style>
+	li{list-style: none;}
+	.clearfix{*zoom: 1;}
+	.clearfix:before,.clearfix:after {display: table;line-height: 0;content: "";}
+	.clearfix:after{clear: both;} 
+	.ble-ui-calender{}
+	.ble-ui-calender-head{
+		width: 280px;margin: 0 auto;height: 40px;position: relative;line-height: 40px;}
+	.ble-ui-calender-top li{width: 40px;height: 40px;float: left;text-align: center;}
+	.ble-ui-calender-year{float:left;width: 40px;text-align: center;}
+	.ble-ui-calender-month{float:right;width: 40px;text-align: center;}
+	.ble-ui-calender{padding-top: 40px;}
+	.ble-ui-calender-box{position: relative;width: 100%;height: 280px;}
+	.ble-ui-calender-box ul{width: 100%;position: absolute;height: inherit;}
+	.ble-ui-calender-box li{clear: both;width: 100%;height: 40px;width: 280px;margin: 0 auto;}
+	.ble-ui-calender-box .ul0{left:-100%;top:0;}
+	.ble-ui-calender-box .ul1{left:0;top:0;}
+	.ble-ui-calender-box .ul2{left:100%;top:0;}
+	.ble-ui-calender-day{float: left;width: 40px;text-align: center;height: 40px;line-height: 40px;position: relative;}
+	.ble-ui-calender-select{}
+	.ble-ui-calender-select:after{content: "";background-color: #eaeaea;opacity: 0.5;top:50%;margin-top:-20px;position: absolute;left:50%;margin-left:-20px;z-index: 1000;width: 40px;height: 40px;border-radius: 50%;}
+</style>
+<div class="ble-ui-calender">
+	<div class="ble-ui-calender-box">
+		<% for(var i = 0;i<3;i++){ %>
+		<% var day = 1; %>
+		<ul class =<%="ul"+i%> >
+			<li class="ble-ui-calender-head clearfix">
+				<div class="ble-ui-calender-year">
+					<%=d[i].year%>
+				</div>
+				<div class="ble-ui-calender-month">
+					<%=(d[i].month+1)+"月"%>
+				</div>
+			</li>
+			<% for(var j = 0;j<6;j++){%>
+				<li>
+					<% for(var k=0;k<7;k++){ %>
+						<% if(d[i].firstWeek == k && day == 1){%>
+							<div class="ble-ui-calender-day" data-day="<%=d[i].year+'/'+d[i].month+'/'+day%>">
+								<%=day%>
+							</div>
+							<% day++;%>
+						<% }else if(day != 1 && day<=d[i].maxDay){ %>
+							<div class="ble-ui-calender-day" data-day="<%=d[i].year+'/'+d[i].month+'/'+day%>">
+								<%=day%>
+							</div>
+							<% day++;%>
+						<% }else {%>
+							<div class="ble-ui-calender-day">
+								
+							</div>
+						<% } %>
+					<% } %>
+				</li>
+			<% } %>
+		</ul>
+		<%day = 1;%>
+		<% } %>
+	</div>
+</div>
